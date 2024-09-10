@@ -1,2 +1,2 @@
 release: python3 manage.py migrate --noinput
-web: gunicorn tokopakdika.wsgi
+web: gunicorn koalove.wsgi
