@@ -1,2 +1,2 @@
-release: python3 manage.py migrate --noinput
+release: django-admin migrate --noinput
 web: gunicorn koalove1.wsgi
