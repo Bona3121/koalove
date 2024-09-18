@@ -1,4 +1,5 @@
 Tugas 2
+Tugas 2
 1. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
 a. Pertama-tama saya membuat lokal repositori yang bernama "koalove"
 b. Kemudian saya install djanggo dan beberapa keperluan lainnya
@@ -25,6 +26,7 @@ Django merupakan framework berbasis bahasa Python yang pernah dipelajari juga pa
 5. Mengapa model pada Django disebut sebagai ORM?
 Perlu kita ketahui bahwa ORM atau sering disebut dengan Object-Relational Mapping merupakan kerangka kerja yang digunakan oleh Django dalam struktur nya. Model pada django ini diberi nama ORM karena teknik ini bekerja dengan cara berinteraksi dengan database menggunakan bahasa pemrograman dan objek, bukan dengan perintah SQL (database) langsung.
 
+Tugas 3
 Tugas 3
 1. Jelaskan mengapa kita memerlukan data delivery dalam pengimplementasian sebuah platform?
 Karena data delivery digunakan sebagai fasilitator dalam menstransfer data dari satu tempat ke tempat lainnya. Data delivery juga digunakan untuk memastikan data yang dikirimkan aman dan tidak terjadi kebocoran data.
