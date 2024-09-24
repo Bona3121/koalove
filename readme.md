@@ -1,5 +1,4 @@
 Tugas 2
-Tugas 2
 1. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
 a. Pertama-tama saya membuat lokal repositori yang bernama "koalove"
 b. Kemudian saya install djanggo dan beberapa keperluan lainnya
@@ -27,7 +26,6 @@ Django merupakan framework berbasis bahasa Python yang pernah dipelajari juga pa
 Perlu kita ketahui bahwa ORM atau sering disebut dengan Object-Relational Mapping merupakan kerangka kerja yang digunakan oleh Django dalam struktur nya. Model pada django ini diberi nama ORM karena teknik ini bekerja dengan cara berinteraksi dengan database menggunakan bahasa pemrograman dan objek, bukan dengan perintah SQL (database) langsung.
 
 Tugas 3
-Tugas 3
 1. Jelaskan mengapa kita memerlukan data delivery dalam pengimplementasian sebuah platform?
 Karena data delivery digunakan sebagai fasilitator dalam menstransfer data dari satu tempat ke tempat lainnya. Data delivery juga digunakan untuk memastikan data yang dikirimkan aman dan tidak terjadi kebocoran data.
 
@@ -50,26 +48,20 @@ Kita membutuhkan csrf_token saat membuat form di Django untuk mencegah serangan 
 Link ss : https://drive.google.com/drive/folders/1s3J3Cyxsyq_zVZvryOtuh3a-1Xq8leTC?usp=sharing
 
 Tugas 4 
-1. Apa itu Django UserCreationForm, dan jelaskan apa kelebihan dan kekurangannya?
-Django UserCreationForm adalah form bawaan django yang menghandle sejenis pengisian data form oleh user baru seperti username dan password. 
-Kelebihan:
-a. Terdapat fitur validasi password otomatis
-b. Django telah mengimplementasikan enkripsi password secara otomatis menggunakan hashing, sehingga data sensitif (seperti password) tidak disimpan dalam bentuk teks biasa.
-c. Integrasi dengan Sistem django sangat mudah dilakukan dengan sistem login dan logoutnya 
 
-Kekurangan:
-a. Kustomisasi tampilan yang terbatas bahkan form defaultnya pun terbayas pada tiga field (username, password1, password2), jadi jika ingin menambahkan informasi lain seperti alamat email atau profil lebih mendalam, developer harus melakukan penyesuaian tambahan.
-b. Tidak ada email konfirmasi yang dikirimkan apabila berhasil maupun gagal login 
+1. Apa perbedaan antara HttpResponseRedirect() dan redirect()
+Dalam Django, HttpResponseRedirect() digunakan untuk mengarahkan pengguna ke URL yang ditentukan secara manual, sementara redirect() adalah fungsi yang lebih fleksibel karena dapat mengarahkan ke URL absolut, nama view, atau objek model yang memiliki metode get.
 
-2. Apa perbedaan antara autentikasi dan otorisasi dalam konteks Django, dan mengapa keduanya penting?
+2. Jelaskan cara kerja penghubungan model Product dengan User!
+Penghubungan model Product dengan User dalam Django biasanya dilakukan dengan menggunakan ForeignKey untuk menunjukkan bahwa setiap produk dimiliki oleh satu pengguna tetapi satu pengguna dapat memiliki banyak produk, atau menggunakan ManyToManyField jika produk dapat dimiliki oleh banyak pengguna dan sebaliknya, serta OneToOneField jika setiap produk hanya dapat dimiliki oleh satu pengguna dan setiap pengguna hanya dapat memiliki satu produk.
+
+3. Apa perbedaan antara authentication dan authorization, apakah yang dilakukan saat pengguna login? Jelaskan bagaimana Django mengimplementasikan kedua konsep tersebut.
 Autentikasi adalah proses verifikasi identitas pengguna dengan melakukan login yang menggunakan kredential. Otorisasi adalah proses yang menentukan apakah pengguna terautentikasi untuk melakukan suatu tindakan tertentu. Kedua tindakan ini penting dilakukan untuk menghindari adanya penyalagunaan akses pada suatu akun. 
 
-3. Apa itu cookies dalam konteks aplikasi web, dan bagaimana Django menggunakan cookies untuk 
-mengelola data sesi pengguna?
-Cookies adalah suatu file yang disimpan sementara di perangkat pengguna atau lebih tepatnya pada browser yang dapat diakses oleh server saat pengguna mengunjungi kembali situs web. Cookies memungkinkan server untuk "mengingat" pengguna antara satu kunjungan dengan kunjungan lainnya. Cara kerjanya, django akan membuat sesi pada saat login dan menyimpan sesi login tersebut, jika di lain waktu pengguna ingin mengkases kembali maka django akan mengambil data informasi sesi yang lalu. Namun ketika pengguna melakukan logout pada server maka data yang ada pada cookies juga kan terhapus.
+4. Bagaimana Django mengingat pengguna yang telah login? Jelaskan kegunaan lain dari cookies dan apakah semua cookies aman digunakan?
+Django mengingat pengguna yang telah login dengan menyimpan id dari session yang pernah mereka lakukan saat pertama kali login. Kegunaan lain cookies diantaranya menyimpan session,menyimpan preferensi pengguna, pelacakan pengunjung dan analisis penggunaan situs web dan dalam e-commerce dapat membantu menyimpan barang di keranjang belanja.
+Tidak semua cookies aman digunakan karena rentan terhadap XSS dan CSRF, contoh nya data sensitif seperti jumlah saldo, pin dll. 
 
-4. Apakah penggunaan cookies aman secara default dalam pengembangan web, atau apakah ada risiko potensial yang harus diwaspadai?
-Penggunaan cookies ini tidak sepenuhnya aman karena tetap masih ada beberapa resiko seperti pencurian data cookies, serangan scripting, dan manipulasi cookies yang rentan akan kebocoran data yang ada pada cookies ini. 
 
 5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
 a. Pertama-tama saya membuat form registrasi dengan membuat file html kemudian mengatur di urls.py dan views.py nya begitu pula dengan form login dan logout,
