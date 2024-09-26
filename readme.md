@@ -108,3 +108,5 @@ a. Pertama tama saya mempelajari lebih dahulu tentang html dan css dari berbagai
 b. Saya mulai buat fitur login dan register serta fitur tambah produknya
 c. setelah itu setiap produk saya jadikan card agar lebih bagus dan menarik
 d. kemudian saya perindah dengan menambahkan navigation bar yang responsif
+
+Link Video Demo Program : https://youtu.be/Dgh3OW8nzCY
