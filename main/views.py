@@ -33,18 +33,19 @@ def show_main(request):
 
 def create_product(request):
     if request.method == 'POST':
-        name = request.POST.get('name')
-        price = request.POST.get('price')
+        name = request.POST['name']
+        price = request.POST['price']
+        description = request.POST.get('description', '')
+        image = request.FILES.get('image')  # Handle image upload
 
         if not name or not price:
-            # Menampilkan pesan error jika field kosong
-            messages.error(request, 'Silakan isi semua field terlebih dahulu.')
-        else:
-            # Jika semua field diisi, simpan produk
-            product = Product(name=name, price=price)
-            product.user = request.user
-            product.save()
-            return redirect('main:show_main')  
+            messages.error(request, 'Product name and price are required!')
+            return redirect('main:create_product')
+
+        product = Product(name=name, price=price, description=description, image=image, user=request.user)
+        product.save()
+        messages.success(request, 'Product added successfully!')
+        return redirect('main:show_main')
 
     return render(request, 'create_product.html')
 
@@ -113,6 +114,7 @@ def edit_product(request, id):
     if request.method == 'POST':
         name = request.POST.get('name')
         price = request.POST.get('price')
+        image = request.FILES.get('image')  # Mengambil file gambar jika ada
 
         if not name or not price:
             # Menampilkan pesan error jika field kosong
@@ -121,7 +123,13 @@ def edit_product(request, id):
             # Memperbarui produk jika semua field diisi
             product.name = name
             product.price = price
+            
+            # Periksa apakah gambar baru diunggah
+            if image:
+                product.image = image
+
             product.save()
+            messages.success(request, 'Produk berhasil diperbarui.')
             return redirect('main:show_main')
 
     # Mengirim data produk ke template untuk mengisi form dengan nilai lama
@@ -129,6 +137,7 @@ def edit_product(request, id):
         'product': product
     }
     return render(request, 'edit_product.html', context)
+
 
 def delete_product(request, id):
     product = Product.objects.get(pk = id)

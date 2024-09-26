@@ -15,34 +15,48 @@
             </div>
         {% endif %}
 
-        <form method="POST">
+        <form method="POST" enctype="multipart/form-data">  <!-- Tambahkan enctype untuk upload file -->
             {% csrf_token %}
-
+        
             <!-- Product Name -->
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="name">
                     Product Name
                 </label>
-                <!-- Mengisi input dengan nilai produk yang ada -->
                 <input type="text" name="name" id="name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value="{{ product.name }}" placeholder="Enter product name">
             </div>
-
+        
             <!-- Product Price -->
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="price">
                     Price
                 </label>
-                <!-- Mengisi input dengan nilai produk yang ada -->
                 <input type="number" name="price" id="price" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value="{{ product.price }}" placeholder="Enter product price">
             </div>
-            
+        
+            <!-- Current Product Image -->
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="current_image">
+                    Current Image
+                </label>
+                <img src="{{ product.image.url }}" alt="{{ product.name }}" class="w-full h-auto mb-2">  <!-- Menampilkan gambar produk saat ini -->
+            </div>
+        
+            <!-- Product Image (Edit) -->
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="image">
+                    Change Image
+                </label>
+                <input type="file" name="image" id="image" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+            </div>
+        
             <!-- Submit Button -->
             <div class="flex items-center justify-between">
-                <!-- Back Button (left-aligned) -->
+                <!-- Back Button -->
                 <a href="{% url 'main:show_main' %}" class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800">
                     Back
                 </a>
-                <!-- Submit Button (right-aligned) -->
+                <!-- Submit Button -->
                 <button class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
                     Edit Product
                 </button>
