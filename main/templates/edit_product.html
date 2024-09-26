@@ -2,66 +2,69 @@
 {% block content %}
 {% include 'navbar.html' %}
 
-<div class="w-full h-screen flex items-center justify-center bg-gray-100">
-    <div class="bg-white shadow-lg rounded-lg p-8 w-full max-w-md">
-        <h2 class="text-2xl font-bold text-gray-800 mb-6">Edit Product</h2>
+<!-- Container untuk scroll seluruh halaman -->
+<div class="w-full h-screen flex flex-col bg-gray-100 overflow-auto pt-16">  <!-- Menambahkan padding top untuk menghindari navbar -->
+    <div class="flex-grow flex items-center justify-center">
+        <div class="bg-white shadow-lg rounded-lg p-8 w-full max-w-md">
+            <h2 class="text-2xl font-bold text-gray-800 mb-6">Edit Product</h2>
 
-        <!-- Notifikasi Error jika ada pesan -->
-        {% if messages %}
-            <div class="mb-4">
-                {% for message in messages %}
-                    <div class="text-red-500 text-sm font-bold">{{ message }}</div>
-                {% endfor %}
-            </div>
-        {% endif %}
+            <!-- Notifikasi Error jika ada pesan -->
+            {% if messages %}
+                <div class="mb-4">
+                    {% for message in messages %}
+                        <div class="text-red-500 text-sm font-bold">{{ message }}</div>
+                    {% endfor %}
+                </div>
+            {% endif %}
 
-        <form method="POST" enctype="multipart/form-data">  <!-- Tambahkan enctype untuk upload file -->
-            {% csrf_token %}
-        
-            <!-- Product Name -->
-            <div class="mb-4">
-                <label class="block text-gray-700 text-sm font-bold mb-2" for="name">
-                    Product Name
-                </label>
-                <input type="text" name="name" id="name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value="{{ product.name }}" placeholder="Enter product name">
-            </div>
-        
-            <!-- Product Price -->
-            <div class="mb-4">
-                <label class="block text-gray-700 text-sm font-bold mb-2" for="price">
-                    Price
-                </label>
-                <input type="number" name="price" id="price" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value="{{ product.price }}" placeholder="Enter product price">
-            </div>
-        
-            <!-- Current Product Image -->
-            <div class="mb-4">
-                <label class="block text-gray-700 text-sm font-bold mb-2" for="current_image">
-                    Current Image
-                </label>
-                <img src="{{ product.image.url }}" alt="{{ product.name }}" class="w-full h-auto mb-2">  <!-- Menampilkan gambar produk saat ini -->
-            </div>
-        
-            <!-- Product Image (Edit) -->
-            <div class="mb-4">
-                <label class="block text-gray-700 text-sm font-bold mb-2" for="image">
-                    Change Image
-                </label>
-                <input type="file" name="image" id="image" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
-            </div>
-        
-            <!-- Submit Button -->
-            <div class="flex items-center justify-between">
-                <!-- Back Button -->
-                <a href="{% url 'main:show_main' %}" class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800">
-                    Back
-                </a>
+            <form method="POST" enctype="multipart/form-data">  <!-- Tambahkan enctype untuk upload file -->
+                {% csrf_token %}
+            
+                <!-- Product Name -->
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="name">
+                        Product Name
+                    </label>
+                    <input type="text" name="name" id="name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value="{{ product.name }}" placeholder="Enter product name">
+                </div>
+            
+                <!-- Product Price -->
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="price">
+                        Price
+                    </label>
+                    <input type="number" name="price" id="price" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value="{{ product.price }}" placeholder="Enter product price">
+                </div>
+            
+                <!-- Current Product Image -->
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="current_image">
+                        Current Image
+                    </label>
+                    <img src="{{ product.image.url }}" alt="{{ product.name }}" class="w-full h-auto mb-2">  <!-- Menampilkan gambar produk saat ini -->
+                </div>
+            
+                <!-- Product Image (Edit) -->
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="image">
+                        Change Image
+                    </label>
+                    <input type="file" name="image" id="image" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                </div>
+            
                 <!-- Submit Button -->
-                <button class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
-                    Edit Product
-                </button>
-            </div>
-        </form>
+                <div class="flex items-center justify-between">
+                    <!-- Back Button -->
+                    <a href="{% url 'main:show_main' %}" class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800">
+                        Back
+                    </a>
+                    <!-- Submit Button -->
+                    <button class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+                        Edit Product
+                    </button>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 
