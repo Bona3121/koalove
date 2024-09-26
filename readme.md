@@ -62,9 +62,49 @@ Autentikasi adalah proses verifikasi identitas pengguna dengan melakukan login y
 Django mengingat pengguna yang telah login dengan menyimpan id dari session yang pernah mereka lakukan saat pertama kali login. Kegunaan lain cookies diantaranya menyimpan session,menyimpan preferensi pengguna, pelacakan pengunjung dan analisis penggunaan situs web dan dalam e-commerce dapat membantu menyimpan barang di keranjang belanja.
 Tidak semua cookies aman digunakan karena rentan terhadap XSS dan CSRF, contoh nya data sensitif seperti jumlah saldo, pin dll. 
 
-
 5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
 a. Pertama-tama saya membuat form registrasi dengan membuat file html kemudian mengatur di urls.py dan views.py nya begitu pula dengan form login dan logout,
 b. setelah semuanya selesai,  saya mencoba keberhasilan membuat 3 akun user yang berisi data dummy sebagai akun uji coba 
 c. menhubungkan product yang telah saya buat sebelumnya dengan setiap usernya dengan konfigurasi pada models dan view kemudian melakukan migrations 
 d. menkonfigurasi cookies last login pada web saya 
+
+Tugas 5 
+1. Jika terdapat beberapa CSS selector untuk suatu elemen HTML, jelaskan urutan prioritas pengambilan CSS selector tersebut!
+
+low to high priority
+a. Element
+Ini memiliki prioritas paling rendah. Misalnya, selector div, p, h1, dll. berlaku untuk semua elemen dari jenis tersebut.
+
+b. Class selectors
+Class selectors berlaku untuk elemen yang memiliki atribut class tertentu. Dapat digunakan untuk elemen yang berbeda.
+
+c. ID Selectors
+Selector ini memiliki prioritas yang lebih tinggi dari class. ID harus unik untuk setiap halaman, sehingga penggunaannya lebih spesifik.
+
+d. Inline styles
+Gaya yang diterapkan langsung pada elemen menggunakan atribut style. Ini memiliki prioritas yang lebih tinggi dari selektor CSS biasa.
+
+e. !important
+Menggunakan !important akan mengesampingkan semua aturan lain, termasuk inline styles. Namun, jika ada beberapa aturan yang sama-sama menggunakan !important, maka specificty akan digunakan untuk menentukan aturan mana yang diterapkan.
+
+2. Mengapa responsive design menjadi konsep yang penting dalam pengembangan aplikasi web? Berikan contoh aplikasi yang sudah dan belum menerapkan responsive design!
+Responsive design adalah pendekatan dalam pengembangan aplikasi web yang memungkinkan tampilan web beradaptasi secara otomatis dengan berbagai ukuran layar dan perangkat. Contoh aplikasi yang belum menerapkan responsive design yaitu https://www.bola.net/ dan aplikasi yang sudah menerapkan responsove design contohnya google.com maupun aplikasi lainnya.
+
+3. Jelaskan perbedaan antara margin, border, dan padding, serta cara untuk mengimplementasikan ketiga hal tersebut!
+Margin adalah spasi yang ada di sekitar batas luar suatu elemen, border merupakan garis batas yang bisa digunakan di setiap elemen dan padding adalah ruang kosong atau space antar konten pada website. Cara mengimplementasikannya adalah buat suatu style boelh di dalam html maupun di luar, pada contoh ini di dalam html yang kemudian pada class box saya set margin , padding serta border dengan satuan ukuran pixel. 
+<style>
+    .box {
+        margin: 20px;  /* Jarak luar elemen */
+        padding: 15px; /* Jarak dalam elemen */
+        border: 2px solid black; /* Garis tepi elemen */
+    }
+</style>
+
+4. Jelaskan konsep flex box dan grid layout beserta kegunaannya!
+Flexible Box Layout merupakan tata letak css yang digunakan untuk mengatur tata letak komponen dalam satu arah (horizontal atau vertikal) secara dinamis sedangan grid layout merupakan sistem tata letak komponen yang mengatur 2 dimensi dalam baris dan kolom. 
+
+5. Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)!
+a. Pertama tama saya mempelajari lebih dahulu tentang html dan css dari berbagai sumber salah satunya tutorial
+b. Saya mulai buat fitur login dan register serta fitur tambah produknya
+c. setelah itu setiap produk saya jadikan card agar lebih bagus dan menarik
+d. kemudian saya perindah dengan menambahkan navigation bar yang responsif

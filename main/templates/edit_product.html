@@ -4,7 +4,7 @@
 
 <div class="w-full h-screen flex items-center justify-center bg-gray-100">
     <div class="bg-white shadow-lg rounded-lg p-8 w-full max-w-md">
-        <h2 class="text-2xl font-bold text-gray-800 mb-6">Add Product</h2>
+        <h2 class="text-2xl font-bold text-gray-800 mb-6">Edit Product</h2>
 
         <!-- Notifikasi Error jika ada pesan -->
         {% if messages %}
@@ -15,7 +15,7 @@
             </div>
         {% endif %}
 
-        <form method="POST" enctype="multipart/form-data">
+        <form method="POST">
             {% csrf_token %}
 
             <!-- Product Name -->
@@ -23,7 +23,8 @@
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="name">
                     Product Name
                 </label>
-                <input type="text" name="name" id="name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Enter product name">
+                <!-- Mengisi input dengan nilai produk yang ada -->
+                <input type="text" name="name" id="name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value="{{ product.name }}" placeholder="Enter product name">
             </div>
 
             <!-- Product Price -->
@@ -31,7 +32,8 @@
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="price">
                     Price
                 </label>
-                <input type="number" name="price" id="price" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="Enter product price">
+                <!-- Mengisi input dengan nilai produk yang ada -->
+                <input type="number" name="price" id="price" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value="{{ product.price }}" placeholder="Enter product price">
             </div>
             
             <!-- Submit Button -->
@@ -41,8 +43,8 @@
                     Back
                 </a>
                 <!-- Submit Button (right-aligned) -->
-                <button class="bg-[#737373] hover:bg-gray-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
-                    Add Product
+                <button class="bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
+                    Edit Product
                 </button>
             </div>
         </form>

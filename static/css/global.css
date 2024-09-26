@@ -1,0 +1,134 @@
+/* General Styling */
+body {
+    font-family: 'Arial', sans-serif;
+    height: 100vh;
+    margin: 0;
+    background: #a6a6a6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* Login Box */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+}
+
+.login-box {
+    background: rgba(255, 255, 255, 0.85);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    max-width: 380px;
+    width: 100%;
+    text-align: center;
+}
+
+/* Login Logo */
+.login-logo img {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 20px;
+}
+
+/* Login Header */
+.login-header h2 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Input Group Styling */
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px 20px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+    box-sizing: border-box;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.9);
+    color: #333;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: #666;
+    background: rgba(255, 255, 255, 1);
+}
+
+/* Button Group Styling */
+.button-group {
+    margin-top: 20px;
+}
+
+.button-group button {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.button-group button:hover {
+    background-color: #45a049;
+}
+
+/* Register Link Styling */
+.login-footer {
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+.login-footer a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.login-footer a:hover {
+    text-decoration: underline;
+}
+
+/* Message Handling */
+.messages .message {
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+}
+
+.messages .message.success {
+    background-color: #dff0d8;
+    color: #3c763d;
+}
+
+.messages .message.error {
+    background-color: #f2dede;
+    color: #a94442;
+}
+
+.messages .message.info {
+    background-color: #d9edf7;
+    color: #31708f;
+}
+
+/* CSS untuk animasi fade-out */
+.fade-out {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+

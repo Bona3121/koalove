@@ -1,32 +1,74 @@
 {% extends 'base.html' %}
 
 {% block meta %}
-<title>Login</title>
+    <title>Login</title>
 {% endblock meta %}
-
+{% load static %}
 {% block content %}
-<div class="login">
-  <h1>Login</h1>
+<div class="login-container" style="position: relative;">
+    <div class="login-box" style="position: relative; z-index: 1; padding-top: 150px;">
+        <!-- Icon or Image for Koala -->
+        <div class="login-logo" style="position: absolute; top: 20px; left: 50%; transform: translateX(-50%);">
+            <img src="{% static 'images/login.png' %}" alt="login" style="width: 200px; height: 115px;" />
+        </div>
+        <div class="login-header">
+            <h2 class="text-3xl font-bold text-center mb-6" style="color: #737373;">SIGN IN</h2>
+        </div>
+        <form method="POST" action="">
+            {% csrf_token %}
+            <!-- Username Input -->
+            <div class="input-group">
+                <input id="username" name="username" type="text" required placeholder="Username">
+            </div>
+            <!-- Password Input -->
+            <div class="input-group">
+                <input id="password" name="password" type="password" required placeholder="Password">
+            </div>
+            <!-- Submit Button -->
+            <div class="w-full bg-[#737373] text-white py-3 px-6 rounded-lg text-lg font-semibold hover:bg-[#565656] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#737373]"">
+                <button type="submit">LOGIN</button>
+            </div>
+        </form>
 
-  <form method="POST" action="">
-    {% csrf_token %}
-    <table>
-      {{ form.as_table }}
-      <tr>
-        <td></td>
-        <td><input class="btn login_btn" type="submit" value="Login" /></td>
-      </tr>
-    </table>
-  </form>
+        {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+                <div class="message {{ message.tags }}">{{ message }}</div>
+            {% endfor %}
+        </div>
+        {% endif %}
 
-  {% if messages %}
-  <ul>
-    {% for message in messages %}
-    <li>{{ message }}</li>
-    {% endfor %}
-  </ul>
-  {% endif %} Don't have an account yet?
-  <a href="{% url 'main:register' %}">Register Now</a>
+        <!-- Register Link -->
+        <div class="login-footer">
+            <p>Don't have an account yet? 
+                <a href="{% url 'main:register' %}">Register here</a>
+            </p>
+        </div>
+    </div>
 </div>
 
+<div class="gif-container" style="display: none; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 2;">
+    <img src="{% static 'images/loading.gif' %}" alt="Loading..." style="width: 350px; height: 200px;">
+</div>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const loginForm = document.querySelector("form");
+        const gifContainer = document.querySelector(".gif-container");
+    
+        loginForm.addEventListener("submit", function (e) {
+            e.preventDefault();  // Mencegah form langsung submit
+    
+            // Tampilkan GIF animasi
+            gifContainer.style.display = "block";
+    
+            // Setelah 2 detik, alihkan ke halaman utama
+            setTimeout(function () {
+                loginForm.submit();  // Kirim form setelah 2 detik
+            }, 1500);  // Durasi animasi GIF
+        });
+    });
+    </script>    
+    
 {% endblock content %}
