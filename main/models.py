@@ -8,7 +8,7 @@ class Product(models.Model):
     price = models.IntegerField()
     description = models.TextField()
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    image = models.ImageField(upload_to='products_images/', blank=True, null=True)  # Tambahkan kolom gambar
+    image = models.ImageField(upload_to='products_images/', blank=True, null=True)  
 
     def __str__(self):
         return self.name

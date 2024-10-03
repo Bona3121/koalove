@@ -150,7 +150,7 @@
           const image = DOMPurify.sanitize(item.fields.image);
             htmlString += `
             <div class="max-w-sm mx-auto bg-white border rounded-lg shadow-md p-4" style="border-color: #737373;">
-                <img class="w-full h-48 object-cover rounded-lg mb-4" src="${image}" alt="${name}">
+                <img class="w-full h-48 object-cover rounded-lg mb-4" src="/media/${image}" alt="${name}">
                 <h3 class="text-lg mb-2">${name}</h3>
                 <p class="text-xl font-bold text-gray-800 mb-2">$${price}</p>
                 
@@ -167,7 +167,7 @@
                         Edit
                     </a>
         
-                    <form action="/delete/${item.pk}" method="post">
+                    <form action="/delete/${item.pk}" method="get">
                         <button type="submit" class="bg-white text-red-500 border border-red-500 px-3 py-1 rounded-lg hover:bg-red-500 hover:text-white transition flex items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-4 h-4 mr-1">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
