@@ -13,6 +13,7 @@ from django.contrib.auth.models import User
 from django.db.models import Q
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
+from django.utils.html import strip_tags
 
 
 @login_required(login_url='/login')
@@ -144,9 +145,9 @@ def delete_product(request, id):
 @csrf_exempt
 @require_POST
 def add_product_entry_ajax(request):
-    name = request.POST.get('name')
-    price = request.POST.get('price')
-    image = request.FILES.get('image')  # Make sure this retrieves a single file, not a list
+    name = strip_tags(request.POST.get('name'))
+    price = strip_tags(request.POST.get('price'))
+    image = strip_tags(request.FILES.get('image'))  
     user = request.user
 
     new_product = Product(

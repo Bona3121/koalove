@@ -3,6 +3,7 @@
 
 {% block meta %}
 <title>Koalove</title>
+<script src="https://cdn.jsdelivr.net/npm/dompurify@3.1.7/dist/purify.min.js"></script>
 {% endblock meta %}
 {% block content %}
 {% include 'navbar.html' %}
@@ -143,12 +144,15 @@
     }
     else {
         classNameString = "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 max-h-[calc(100vh-16rem)] overflow-y-scroll";
-        productEntries.forEach((product) => {
+        productEntries.forEach((item) => {
+          const name = DOMPurify.sanitize(item.fields.name);
+          const price = DOMPurify.sanitize(item.fields.price);
+          const image = DOMPurify.sanitize(item.fields.image);
             htmlString += `
             <div class="max-w-sm mx-auto bg-white border rounded-lg shadow-md p-4" style="border-color: #737373;">
-                <img class="w-full h-48 object-cover rounded-lg mb-4" src="${product.image_url}" alt="${product.name}">
-                <h3 class="text-lg mb-2">${product.name}</h3>
-                <p class="text-xl font-bold text-gray-800 mb-2">$${product.price}</p>
+                <img class="w-full h-48 object-cover rounded-lg mb-4" src="${image}" alt="${name}">
+                <h3 class="text-lg mb-2">${name}</h3>
+                <p class="text-xl font-bold text-gray-800 mb-2">$${price}</p>
                 
                 <!-- Display Fixed Star Ratings (5 stars) -->
                 <div class="text-xl mb-2 text-yellow-500">
@@ -156,14 +160,14 @@
                 </div>
         
                 <div class="flex justify-between">
-                    <a href="/edit-product/${product.id}" class="bg-black text-white px-3 py-1 rounded-lg hover:bg-gray-800 transition flex items-center">
+                    <a href="/edit-product/${item.pk}" class="bg-black text-white px-3 py-1 rounded-lg hover:bg-gray-800 transition flex items-center">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-4 h-4 mr-1">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536M9 11l6.293-6.293a1 1 0 011.414 0l3.536 3.536a1 1 0 010 1.414L13 15l-6-6zm0 0v4a1 1 0 001 1h4" />
                         </svg>
                         Edit
                     </a>
         
-                    <form action="/delete-product/${product.id}" method="post">
+                    <form action="/delete/${item.pk}" method="post">
                         <button type="submit" class="bg-white text-red-500 border border-red-500 px-3 py-1 rounded-lg hover:bg-red-500 hover:text-white transition flex items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-4 h-4 mr-1">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
