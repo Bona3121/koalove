@@ -147,7 +147,7 @@ def delete_product(request, id):
 def add_product_entry_ajax(request):
     name = strip_tags(request.POST.get('name'))
     price = strip_tags(request.POST.get('price'))
-    image = strip_tags(request.FILES.get('image'))  # Make sure this retrieves a single file, not a list
+    image = request.FILES.get('image')  
     user = request.user
 
     new_product = Product(
