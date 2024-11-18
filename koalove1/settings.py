@@ -28,7 +28,7 @@ SECRET_KEY = "django-insecure--191m4#-5&kp#hi%(ih!2585bnh-i!@ertd)x!x-^#$pwejyr8
 #DEBUG = not PRODUCTION
 DEBUG = True
 
-ALLOWED_HOSTS = ["localhost", "127.0.0.1", "http://marla-marlena-koalove1.pbp.cs.ui.ac.id", "https://marla-marlena-koalove1.pbp.cs.ui.ac.id", "marla-marlena-koalove1.pbp.cs.ui.ac.id"]
+ALLOWED_HOSTS = ["localhost", "127.0.0.1", "http://marla-marlena-koalove1.pbp.cs.ui.ac.id", "https://marla-marlena-koalove1.pbp.cs.ui.ac.id", "marla-marlena-koalove1.pbp.cs.ui.ac.id", "10.0.2.2"]
 
 
 # Application definition
@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     'main',
+    'authentication',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -52,6 +54,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
 ]
 
 ROOT_URLCONF = "koalove1.urls"
@@ -132,3 +135,10 @@ else:
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_CREDENTIALS = True
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SAMESITE = 'None'
+SESSION_COOKIE_SAMESITE = 'None'
+

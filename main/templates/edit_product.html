@@ -2,6 +2,7 @@
 {% block content %}
 {% include 'navbar.html' %}
 
+
 <!-- Container untuk scroll seluruh halaman -->
 <div class="w-full h-screen flex flex-col bg-gray-100 overflow-auto pt-16">  <!-- Menambahkan padding top untuk menghindari navbar -->
     <div class="flex-grow flex items-center justify-center">
@@ -17,10 +18,8 @@
                 </div>
             {% endif %}
 
-            <form method="POST" enctype="multipart/form-data">  <!-- Tambahkan enctype untuk upload file -->
+            <form method="POST" enctype="multipart/form-data">  
                 {% csrf_token %}
-            
-                <!-- Product Name -->
                 <div class="mb-4">
                     <label class="block text-gray-700 text-sm font-bold mb-2" for="name">
                         Product Name
@@ -35,13 +34,20 @@
                     </label>
                     <input type="number" name="price" id="price" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value="{{ product.price }}" placeholder="Enter product price">
                 </div>
+
+                <div class="mb-4">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="name">
+                        Product Description
+                    </label>
+                    <input type="text" name="description" id="description" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" value="{{ product.description }}" placeholder="Enter product description">
+                </div>
             
                 <!-- Current Product Image -->
                 <div class="mb-4">
                     <label class="block text-gray-700 text-sm font-bold mb-2" for="current_image">
                         Current Image
                     </label>
-                    <img src="{{ product.image.url }}" alt="{{ product.name }}" class="w-full h-auto mb-2">  <!-- Menampilkan gambar produk saat ini -->
+                    <img src="{{ product.image.url }}" alt="{{ product.name }}" class="w-full h-auto mb-2"> 
                 </div>
             
                 <!-- Product Image (Edit) -->
@@ -67,5 +73,4 @@
         </div>
     </div>
 </div>
-
 {% endblock %}

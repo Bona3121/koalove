@@ -14,6 +14,10 @@ class ProductForm(ModelForm):
     def clean_price(self):
         price = self.cleaned_data["price"]
         return strip_tags(price)
+
+    def clean_description(self):
+        description = self.cleaned_data["description"]
+        return strip_tags(description)
     
     def clean_image(self):
         image = self.cleaned_data["image"]

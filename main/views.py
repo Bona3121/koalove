@@ -14,6 +14,8 @@ from django.db.models import Q
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_POST
 from django.utils.html import strip_tags
+import json
+from django.http import JsonResponse
 
 
 @login_required(login_url='/login')
@@ -32,11 +34,11 @@ def create_product(request):
     if request.method == 'POST':
         name = request.POST['name']
         price = request.POST['price']
-        description = request.POST.get('description', '')
+        description = request.POST['description']
         image = request.FILES.get('image')  # Handle image upload
 
-        if not name or not price:
-            messages.error(request, 'Product name and price are required!')
+        if not name or not price or not description:
+            messages.error(request, 'Product name, price , and description are required!')
             return redirect('main:create_product')
 
         product = Product(name=name, price=price, description=description, image=image, user=request.user)
@@ -102,7 +104,7 @@ def logout_user(request):
 
 def edit_product(request, id):
     # Mencari produk berdasarkan ID
-    product = Product.objects.filter(pk=id).first()  # Mengambil produk atau None jika tidak ditemukan
+    product = Product.objects.filter(pk=id).first() 
 
     if not product:
         # Jika produk tidak ditemukan, tampilkan pesan error
@@ -112,6 +114,7 @@ def edit_product(request, id):
     if request.method == 'POST':
         name = request.POST.get('name')
         price = request.POST.get('price')
+        description = request.POST.get('description')
         image = request.FILES.get('image')  # Mengambil file gambar jika ada
 
         if not name or not price:
@@ -121,6 +124,7 @@ def edit_product(request, id):
             # Memperbarui produk jika semua field diisi
             product.name = name
             product.price = price
+            product.description = description
             
             # Periksa apakah gambar baru diunggah
             if image:
@@ -147,12 +151,31 @@ def delete_product(request, id):
 def add_product_entry_ajax(request):
     name = strip_tags(request.POST.get('name'))
     price = strip_tags(request.POST.get('price'))
+    description = strip_tags(request.POST.get('description'))
     image = request.FILES.get('image')  
     user = request.user
 
     new_product = Product(
-        name=name, price=price, image=image,  
+        name=name, price=price, description=description, image=image,  
         user=user
     )
     new_product.save()  # Save the product
     return HttpResponse(b"CREATED", status=201)
+
+@csrf_exempt
+def create_product_flutter(request): #ini belum diimplementasikan untuk image
+    if request.method == 'POST':
+
+        data = json.loads(request.body)
+        new_product = ProductEntry.objects.create(
+            user=request.user,
+            nama=data["nama"],
+            description=data["description"],
+            price=int(data["price"]),
+        )
+
+        new_product.save()
+
+        return JsonResponse({"status": "success"}, status=200)
+    else:
+        return JsonResponse({"status": "error"}, status=401)
